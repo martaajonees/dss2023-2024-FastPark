@@ -10,4 +10,6 @@
 - Sergio Bastón Losey
 
 ## Descripción del proyecto
+![logoFP](https://github.com/martaajonees/dss2023-2024-FastPark/assets/101277911/d6362787-edb2-4b04-8c64-80b632c6fe41)
+
 
