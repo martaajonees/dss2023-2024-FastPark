@@ -1,0 +1,26 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "commitType": "docs",
+  "commitConvention": "angular",
+  "contributors": [
+    {
+      "login": "SBaston",
+      "name": "SBaston",
+      "avatar_url": "https://avatars.githubusercontent.com/u/101277911?v=4",
+      "profile": "https://github.com/SBaston",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "skipCi": true,
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "projectName": "dss2023-2024-FastPark",
+  "projectOwner": "martaajonees"
+}
