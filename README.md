@@ -15,7 +15,7 @@
 - Sergio Bastón Losey
 
 ## Descripción del proyecto
-Se trata de un sistema software para gestionar un sector de aparcamientos privados. Se requiere la automatización de los procesos de estacionamiento de un vehículo. Es un software libre de uso gratuito pero también hay una opción de compra disponible para aquellos usuarios que quieran utilizar más funcionalidades adicionales.
+Se trata de un sistema software para gestionar un sector de aparcamientos privados y automizar los procesos de estacionamiento de un vehículo. Es un software libre de uso gratuito aunque se encuentra disponible una opción de compra para aquellos usuarios que quieran utilizar más funcionalidades adicionales.
 
  <img src="https://github.com/martaajonees/dss2023-2024-FastPark/assets/100365874/e7fe300e-bc0c-4936-a452-ecf7e60f166b.jpg" width="200" height="200">
 
