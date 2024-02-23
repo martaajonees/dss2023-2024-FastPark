@@ -1,2 +1,6 @@
-# dss2023-2024-FastPark
-Proyecto sobre gestión de sistemas de aparcamientos privados
+# FastPark
+## Autores
+- Marta Jones González
+- Sergio Bastón Losey
+
+## ¿De qué trata el?
