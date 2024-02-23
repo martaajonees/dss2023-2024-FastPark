@@ -1,6 +1,6 @@
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 <p align="center">
 <img src= "https://github.com/martaajonees/dss2023-2024-FastPark/assets/100365874/03d13cd2-89da-4408-ac8a-6fdc75e575b8">
@@ -30,6 +30,7 @@ Se trata de un sistema software para gestionar un sector de aparcamientos privad
   <tbody>
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/SBaston"><img src="https://avatars.githubusercontent.com/u/101277911?v=4?s=100" width="100px;" alt="SBaston"/><br /><sub><b>SBaston</b></sub></a><br /><a href="https://github.com/martaajonees/dss2023-2024-FastPark/commits?author=SBaston" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/martaajonees"><img src="https://avatars.githubusercontent.com/u/100365874?v=4?s=100" width="100px;" alt="Marta Jones"/><br /><sub><b>Marta Jones</b></sub></a><br /><a href="https://github.com/martaajonees/dss2023-2024-FastPark/commits?author=martaajonees" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
