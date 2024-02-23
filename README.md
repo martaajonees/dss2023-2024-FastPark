@@ -15,6 +15,7 @@
 - Sergio Bastón Losey
 
 ## Descripción del proyecto
+Se trata de un sistema software para gestionar
 
  <img src="https://github.com/martaajonees/dss2023-2024-FastPark/assets/100365874/e7fe300e-bc0c-4936-a452-ecf7e60f166b.jpg" width="200" height="200">
 
