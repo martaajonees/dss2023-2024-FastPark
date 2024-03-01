@@ -1,0 +1,15 @@
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi= "http://www.w3.org/2003/XMLSchema-instance">
+<modelVersion>4.0.0</modelVersion>
+<groupId>es.uca.dss.fastpark</groupId>
+<artifactId>core</artifactId>
+
+<properties>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
+</properties>
+
+<dependencies>
+</dependencies>
+
+</project>
