@@ -1,4 +1,5 @@
 package es.uca.dss.fastpark;
+import java.io.IOException;
 import java.lang.String;
 import java.util.concurrent.TimeUnit;
 
@@ -32,7 +33,12 @@ public class Parking {
         Vehiculo veh = new Vehiculo(mat); // Creamos el vehículo
         if(plazasOcupadas < nPlazas){ // Si hay hueco para el coche
             if(!bar.abierta()) bar.abrir(); // Abrimos la barrera
-            cod.generarQR(mat); // Generamos QR: te lo guarda en ruta
+            try{
+                cod.generarQR(mat); // Generamos QR: te lo guarda en ruta
+            } catch (Exception e)
+            {
+                e.printStackTrace();
+            }
             coches.guardar(mat, veh); // Añadimos al map
             plazasOcupadas ++; // Se ha ocupado una plaza más
             veh.inicio(); // Empezamos a contar tiempo de estancia

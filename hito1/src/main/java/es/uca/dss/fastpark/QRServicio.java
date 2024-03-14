@@ -45,8 +45,28 @@ import java.util.Scanner;  //Para leer desde la terminal
          }
         return folderPath;
      }
-     void generarQR(String m){
-
+     void generarQR(String m) throws  FileNotFoundException, IOException{
+        BitMatrix matrix = null;  //Crear una matriz de bits bidimensional para el QR
+        Writer writer = new QRCodeWriter();  //Generar el objeto writer para generar posterioromente el QR
+         try{
+             matrix = writer.encode(m, BarcodeFormat.QR_CODE, qrTamAlto, qrTamAncho);  //Generación del QR
+         } catch (WriterException e){
+             e.printStackTrace();
+         }
+         BufferedImage imagen = new BufferedImage(qrTamAlto, qrTamAncho, BufferedImage.TYPE_INT_RGB);  //Generar la imagen del código QR
+         for (int x = 0; x < qrTamAlto; x++)   //Dibujar la imagen del código QR
+         {
+             for (int y = 0; y < qrTamAncho; y++)
+             {
+                 int valor = (matrix.get(x, y) ? 0 : 1) & 0xff;
+                 imagen.setRGB(x, y, (valor == 0 ? 0 : 0xFFFFFF));
+             }
+         }
+         String result = m + ".png";
+         String route = ruta + File.separator + result;
+         FileOutputStream codigo = new FileOutputStream(route);  //Crear el archivo de salida donde se guardará el resultado
+         ImageIO.write(imagen, formato, codigo);   //Escribir la imagen del código QR
+         codigo.close();
      }
      String leerQR(){
          return "Hola";
