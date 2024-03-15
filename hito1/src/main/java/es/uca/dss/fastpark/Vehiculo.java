@@ -3,7 +3,7 @@ import java.lang.String;
 import java.time.LocalDateTime;
 import java.time.Duration;
 public class Vehiculo {
-    private LocalDateTime inicio_;
+    private LocalDateTime inicio_, fin_;
     private final String matricula_;
     private Bono bono;
     private boolean pagado_;
@@ -15,8 +15,16 @@ public class Vehiculo {
     {
         inicio_ = LocalDateTime.now();
     }
+    public LocalDateTime get_inicio(){
+        return inicio_;
+    }
+    public LocalDateTime get_final(){
+        return fin_;
+    }
+
     public long calcularTiempoEstacionado(){
-        LocalDateTime fin_ = LocalDateTime.now();
+        fin_ = LocalDateTime.now();
+
         return Duration.between(inicio_, fin_).toMinutes(); // Devuelve los minutos
     }
     public String matricula(){

@@ -1,5 +1,4 @@
 package es.uca.dss.fastpark;
-import java.io.IOException;
 import java.lang.String;
 import java.util.concurrent.TimeUnit;
 
@@ -8,6 +7,7 @@ public class Parking {
     private final int dirPostal, nPlazas;
     private int plazasOcupadas;
     private final VehiculoRepositorio coches;
+    private final HistorialRepositorio historial;
     private final QRServicio cod;
     private final Barrera bar;
     private Tarificacion tarifas;
@@ -21,6 +21,7 @@ public class Parking {
         this.coches = new VehiculosHash();
         this.cod = new QRServicio();
         this.bar = new Barrera();
+        this.historial = new VehiculosHistorial();
     }
 
     // Método set tarificación
@@ -37,7 +38,7 @@ public class Parking {
                 cod.generarQR(mat); // Generamos QR: te lo guarda en ruta
             } catch (Exception e)
             {
-                e.printStackTrace();
+                System.err.println(e.getMessage());
             }
             coches.guardar(mat, veh); // Añadimos al map
             plazasOcupadas ++; // Se ha ocupado una plaza más
@@ -45,7 +46,7 @@ public class Parking {
             try {
                 TimeUnit.SECONDS.sleep(15);
             } catch (InterruptedException e){
-                System.out.println(e);
+                System.err.println(e.getMessage());
             }
             bar.cerrar();
         } else System.out.println("No hay más espacio. Espere a que salga algún vehículo");
@@ -56,10 +57,11 @@ public class Parking {
         if(veh != null){ // Verificamos que esté en la base de datos
             if(veh.pagado() || veh.tieneBono()){ // Vemos que esté pagado o tenga bono
                 bar.abrir(); // abrimos barrera para que se vaya
+                historial.guardar(mat, veh); // guardamos en el historial
                 try {
                     TimeUnit.SECONDS.sleep(15);
                 } catch (InterruptedException e){
-                    System.out.println(e);
+                    System.err.println(e.getMessage());
                 }
                 bar.cerrar();
                 plazasOcupadas --;
