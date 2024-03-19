@@ -39,18 +39,18 @@ class VehiculoTest {
     }
 
     @Test
-    void setPago() {
-    }
-
-    @Test
     void pagado() {
+        assertFalse(vehiculo.pagado());
+        vehiculo.setPago(true);
+        assertTrue(vehiculo.pagado());
     }
 
     @Test
     void tieneBono() {
+        assertFalse(vehiculo.tieneBono());
+        Bono bono = new BonoAnual();
+        vehiculo.setBono(bono);
+        assertTrue(vehiculo.tieneBono());
     }
 
-    @Test
-    void setBono() {
-    }
 }
