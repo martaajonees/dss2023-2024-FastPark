@@ -69,6 +69,10 @@ public class Parking {
             } else System.out.println("Debe pagar la estancia antes de salir");
         } else System.out.println("ERROR. No existe el vehículo asociado a esta matricula.");
     }
+    public int getPlazasOcupadas()
+    {
+        return plazasOcupadas;
+    }
     public void pagarEstandar(){
         pagoEstancia.pagar();
     }

@@ -1,8 +1,7 @@
 package es.uca.dss.fastpark;
 import java.lang.String;
-import com.google.zxing.BarcodeFormat;  //Generar QR
-import com.google.zxing.Writer;  //Generar QR
-import com.google.zxing.WriterException;  //Generar QR
+
+import com.google.zxing.*;
 import com.google.zxing.common.BitMatrix;  //Generar QR
 import com.google.zxing.qrcode.QRCodeWriter;  //Generar QR
 
@@ -12,13 +11,14 @@ import java.io.FileNotFoundException;  //Excepción de archivos de la ruta
 import java.io.FileOutputStream;  //Generar un archivo de salida
 import java.io.IOException;  //Excepción de archivos
 import java.io.File;  //Para obtener la ruta
+import com.google.zxing.LuminanceSource;  //Luminosidad en la escala de grises para interpretar correctamente la información del código QR
 import java.util.Scanner;  //Para leer desde la terminal
  public class QRServicio {
-     QRServicio(){}
      private static final int qrTamAncho = 400;
      private static final int qrTamAlto = 400;
      private static final String formato = "png";
      private static final String ruta = ObtenerRuta();
+     QRServicio(){}
 
      static String ObtenerRuta() {
          //Obtener la ruta del directorio principal de usuario
@@ -68,7 +68,12 @@ import java.util.Scanner;  //Para leer desde la terminal
          ImageIO.write(imagen, formato, codigo);   //Escribir la imagen del código QR
          codigo.close();
      }
-     String leerQR(){
-         return "Hola";
+     String leerQR(String nomArch) throws  IOException, NotFoundException {
+        String rutaComplete = ruta + File.separator + nomArch;
+        File archQR = new File(rutaComplete);
+
+        BufferedImage imagenQR = ImageIO.read(archQR);
+        //LuminanceSource fuente = new BufferedImageLuminanceSource(imagenQR);
+
      }
 }
