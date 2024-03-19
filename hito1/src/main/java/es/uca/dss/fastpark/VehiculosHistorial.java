@@ -39,7 +39,8 @@ public class VehiculosHistorial implements HistorialRepositorio{
 
     public void buscar_fecha_entrada(LocalDateTime f){
         for(Fila u: historial){
-            if(u.entrada == f){
+            if(u.entrada.getHour() == f.getHour() && u.entrada.getMinute() == f.getMinute() && u.entrada.getMonth() == f.getMonth() && u.entrada.getDayOfMonth() == f.getDayOfMonth()
+                && u.entrada.getYear() == f.getYear()){
                 System.out.println(u);
             }
         }
@@ -47,7 +48,8 @@ public class VehiculosHistorial implements HistorialRepositorio{
     }
     public void buscar_fecha_salida(LocalDateTime f){
         for(Fila u: historial){
-            if(u.salida == f){
+            if(u.salida.getHour() == f.getHour() && u.salida.getMinute() == f.getMinute() && u.salida.getMonth() == f.getMonth() && u.salida.getDayOfMonth() == f.getDayOfMonth()
+                    && u.salida.getYear() == f.getYear()){
                 System.out.println(u);
             }
         }
@@ -60,4 +62,6 @@ public class VehiculosHistorial implements HistorialRepositorio{
             }
         }
     }
+
+    public int get_size(){return historial.size();}
 }

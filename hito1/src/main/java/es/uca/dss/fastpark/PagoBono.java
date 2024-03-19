@@ -9,6 +9,7 @@ public class PagoBono {
     private VehiculoRepositorio coches;
     public PagoBono(VehiculoRepositorio c){
         this.coches = c;
+        this.codigo = new QRServicio();
     }
     void obtenerBono(Bono b) throws IOException, NotFoundException {
         String mat = codigo.leerQR();

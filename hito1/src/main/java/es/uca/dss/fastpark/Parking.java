@@ -56,7 +56,6 @@ public class Parking {
     }
     public void salida() throws IOException, NotFoundException {
         String mat = cod.leerQR();
-        System.out.println("la matricula es: "+ mat+ "termina aqui");
         Vehiculo veh = coches.get(mat);
         if(veh != null){ // Verificamos que esté en la base de datos
             if(veh.pagado() || veh.tieneBono()){ // Vemos que esté pagado o tenga bono
@@ -68,7 +67,8 @@ public class Parking {
                     System.err.println(e.getMessage());
                 }
                 bar.cerrar();
-                plazasOcupadas --;
+                plazasOcupadas--;
+                System.out.println(plazasOcupadas);
                 coches.remove(mat, veh);
             } else System.out.println("Debe pagar la estancia antes de salir");
         } else System.out.println("ERROR. No existe el vehículo asociado a esta matricula.");
