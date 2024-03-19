@@ -9,17 +9,22 @@ import java.io.IOException;
 
 class ParkingTest {
     private Parking parking;
-    private VehiculoRepositorio coches;
+    private Tarificacion t;
 
     @BeforeEach
-    void setUp() {
+    void setUp() throws IOException, NotFoundException {
+        // Configuracion Parking
         parking = new Parking("Ejemplo", 123, 10);
-        this.coches = new VehiculosHash();
+        //Añadimos un coche y que entre
         String mat = "4567ABC";
-        parking.entrada(mat);
         Vehiculo v = new Vehiculo(mat);
         v.setPago(true); // Hacemos como que el vehiculo ya ha pagado para que pueda salir
-        coches.guardar(mat, v);
+        parking.entrada(mat);
+        // El coche debe pagar
+        t = new Tarificacion(4);
+        parking.setTarificacion(t);
+        parking.pagarEstandar();
+
 
     }
 

@@ -25,6 +25,7 @@ public class Parking {
         this.cod = new QRServicio();
         this.bar = new Barrera();
         this.historial = new VehiculosHistorial();
+        this.pagoEstancia = new PagoEstancia(tarifas, coches);
     }
 
     // Método set tarificación
@@ -57,6 +58,7 @@ public class Parking {
     public void salida() throws IOException, NotFoundException {
         String mat = cod.leerQR();
         Vehiculo veh = coches.get(mat);
+
         if(veh != null){ // Verificamos que esté en la base de datos
             if(veh.pagado() || veh.tieneBono()){ // Vemos que esté pagado o tenga bono
                 bar.abrir(); // abrimos barrera para que se vaya

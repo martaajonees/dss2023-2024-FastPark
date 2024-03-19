@@ -8,6 +8,7 @@ public class PagoEstancia {
     private final QRServicio cod_;
     private final Tarificacion tarifa;
     private final VehiculoRepositorio coches;
+
     public PagoEstancia (Tarificacion t, VehiculoRepositorio c) {
         this.tarifa = t;
         this.coches = c;
