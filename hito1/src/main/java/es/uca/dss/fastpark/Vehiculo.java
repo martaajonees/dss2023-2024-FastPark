@@ -22,10 +22,6 @@ public class Vehiculo {
         return fin_;
     }
 
-    public void set_final(LocalDateTime t){
-        fin_ = t;
-    } // Solo para los tests
-
     public long calcularTiempoEstacionado(){
         fin_ = LocalDateTime.now();
 

@@ -1,5 +1,9 @@
 package es.uca.dss.fastpark;
 
+import com.google.zxing.NotFoundException;
+
+import java.io.IOException;
+
 public class PagoEstancia {
     private final QRServicio cod_;
     private final Tarificacion tarifa;
@@ -9,7 +13,7 @@ public class PagoEstancia {
         this.coches = c;
         this.cod_ = new QRServicio();
     }
-    public void pagar(){
+    public void pagar() throws IOException, NotFoundException {
         String matricula = cod_.leerQR(); // Leemos el codigo QR
         Vehiculo vehiculo = coches.get(matricula); // Dada la matrícula cojo el vehiculo
         long precio = obtenerPrecio(vehiculo.calcularTiempoEstacionado());

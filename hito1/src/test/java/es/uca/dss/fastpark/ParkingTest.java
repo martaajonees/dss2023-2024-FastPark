@@ -1,7 +1,11 @@
 package es.uca.dss.fastpark;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import com.google.zxing.NotFoundException;
 import org.junit.jupiter.api.*;
+
+import java.io.IOException;
 
 class ParkingTest {
     private Parking parking;
@@ -19,19 +23,13 @@ class ParkingTest {
     }
 
     @Test
-    void testSalida() {
+    void testSalida() throws IOException, NotFoundException {
         // Verificar que la salida disminuye las plazas ocupadas
         parking.entrada("ABC123");
         parking.salida();
         assertEquals(0, parking.getPlazasOcupadas());
     }
-
-    @Test
-    void testPagoEstandar() {
-        // Verificar que se realiza el pago correctamente
-        // Implementa tu lógica de prueba según tus requisitos
-    }
-
+    // No lo pasa porque falta la función leerQR
     @Test
     void testToString() {
         // Verificar que el método toString funciona correctamente

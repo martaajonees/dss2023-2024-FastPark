@@ -1,4 +1,8 @@
 package es.uca.dss.fastpark;
+import com.google.zxing.NotFoundException;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 public class PagoBono {
     private QRServicio codigo;
@@ -6,7 +10,7 @@ public class PagoBono {
     public PagoBono(VehiculoRepositorio c){
         this.coches = c;
     }
-    void obtenerBono(Bono b){
+    void obtenerBono(Bono b) throws IOException, NotFoundException {
         String mat = codigo.leerQR();
         Vehiculo v = coches.get(mat);
         System.out.println("El vehículo de matrícula "+ v.matricula()+ " debe pagar " + b.getPrecioBono() + " por el bono seleccionado.");

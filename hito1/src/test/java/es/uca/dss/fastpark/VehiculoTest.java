@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
+import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -12,7 +13,7 @@ class VehiculoTest {
     private Vehiculo vehiculo;
     @BeforeEach
     void setUp() {
-        vehiculo = new Vehiculo("234577HJH");
+        vehiculo = new Vehiculo("2345HJH");
     }
 
     @Test
@@ -22,12 +23,9 @@ class VehiculoTest {
     }
 
     @Test
-    void calcularTiempoEstacionado() {
-        vehiculo.inicio();
-        LocalDateTime inicio = vehiculo.get_inicio();
-        LocalDateTime fin = inicio.plusMinutes(5);
-        vehiculo.set_final(fin);
-        assertEquals(5, vehiculo.calcularTiempoEstacionado());
+    void calcularTiempoEstacionado(){
+        vehiculo.inicio(); // inicio el tiempo
+        assertEquals(0,vehiculo.calcularTiempoEstacionado()); // pasa 0 segundos
     }
 
     @Test

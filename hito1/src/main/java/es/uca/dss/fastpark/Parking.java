@@ -1,4 +1,7 @@
 package es.uca.dss.fastpark;
+import com.google.zxing.NotFoundException;
+
+import java.io.IOException;
 import java.lang.String;
 import java.util.concurrent.TimeUnit;
 
@@ -51,8 +54,9 @@ public class Parking {
             bar.cerrar();
         } else System.out.println("No hay más espacio. Espere a que salga algún vehículo");
     }
-    public void salida(){
+    public void salida() throws IOException, NotFoundException {
         String mat = cod.leerQR();
+        System.out.println("la matricula es: "+ mat+ "termina aqui");
         Vehiculo veh = coches.get(mat);
         if(veh != null){ // Verificamos que esté en la base de datos
             if(veh.pagado() || veh.tieneBono()){ // Vemos que esté pagado o tenga bono
@@ -73,7 +77,7 @@ public class Parking {
     {
         return plazasOcupadas;
     }
-    public void pagarEstandar(){
+    public void pagarEstandar() throws IOException, NotFoundException{
         pagoEstancia.pagar();
     }
 

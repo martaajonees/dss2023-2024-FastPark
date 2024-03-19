@@ -2,8 +2,11 @@ package es.uca.dss.fastpark;
 import java.lang.String;
 
 import com.google.zxing.*;
+import com.google.zxing.BinaryBitmap;
 import com.google.zxing.common.BitMatrix;  //Generar QR
 import com.google.zxing.qrcode.QRCodeWriter;  //Generar QR
+import com.google.zxing.client.j2se.BufferedImageLuminanceSource;  //Leer la imagen de la luminosidad de grises
+import com.google.zxing.common.HybridBinarizer;
 
 import javax.imageio.ImageIO;  //Generar Imagen QR
 import java.awt.image.BufferedImage;  //Generar Imagen QR
@@ -11,8 +14,7 @@ import java.io.FileNotFoundException;  //Excepción de archivos de la ruta
 import java.io.FileOutputStream;  //Generar un archivo de salida
 import java.io.IOException;  //Excepción de archivos
 import java.io.File;  //Para obtener la ruta
-import com.google.zxing.LuminanceSource;  //Luminosidad en la escala de grises para interpretar correctamente la información del código QR
-import java.util.Scanner;  //Para leer desde la terminal
+
  public class QRServicio {
      private static final int qrTamAncho = 400;
      private static final int qrTamAlto = 400;
@@ -62,18 +64,25 @@ import java.util.Scanner;  //Para leer desde la terminal
                  imagen.setRGB(x, y, (valor == 0 ? 0 : 0xFFFFFF));
              }
          }
-         String result = m + ".png";
-         String route = ruta + File.separator + result;
+
+         String route = ruta + File.separator + "QR.png";
          FileOutputStream codigo = new FileOutputStream(route);  //Crear el archivo de salida donde se guardará el resultado
          ImageIO.write(imagen, formato, codigo);   //Escribir la imagen del código QR
          codigo.close();
      }
-     String leerQR(String nomArch) throws  IOException, NotFoundException {
-        String rutaComplete = ruta + File.separator + nomArch;
-        File archQR = new File(rutaComplete);
+     String leerQR() throws  IOException, NotFoundException {
+         String rutaImagen = ruta + File.separator + "QR.png"; // ruta a la imagen
+         BufferedImage imagen = ImageIO.read(new File(rutaImagen));
+         BufferedImageLuminanceSource fuente = new BufferedImageLuminanceSource(imagen);
+         HybridBinarizer binarizador = new HybridBinarizer(fuente);
+         BinaryBitmap bitmap = new BinaryBitmap(binarizador);
 
-        BufferedImage imagenQR = ImageIO.read(archQR);
-        //LuminanceSource fuente = new BufferedImageLuminanceSource(imagenQR);
+         MultiFormatReader lector = new MultiFormatReader();
+         Result resultado = lector.decode(bitmap);
 
+         //Obtener el texto decodificando el código QR
+         String textoQR = resultado.getText();
+
+         return textoQR;
      }
 }
