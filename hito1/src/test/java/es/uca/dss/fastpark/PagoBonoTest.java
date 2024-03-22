@@ -17,7 +17,7 @@ class PagoBonoTest {
     @BeforeEach
     void setUp() {
         this.coches = new VehiculosHash();
-        this.pago_bono = new PagoBono(coches);
+        this.pago_bono = new PagoBono();
         // Creamos un vehiculo y lo guardamos
         String mat = "1234ABC";
         Vehiculo v = new Vehiculo(mat);
@@ -30,6 +30,8 @@ class PagoBonoTest {
         qr.generarQR("1234ABC");
         Bono bono = new BonoTrimestral();
         bono.setPrecioBono(5);
-        pago_bono.obtenerBono(bono);
+        String matricula = qr.leerQR(); // Leemos el codigo QR
+        Vehiculo v = coches.get(matricula); // Dada la matrícula cojo el vehiculo
+        pago_bono.obtenerBono(bono, v);
     }
 }

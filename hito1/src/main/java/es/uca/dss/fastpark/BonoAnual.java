@@ -12,7 +12,6 @@ public class BonoAnual extends Bono {
     public long getPrecioBono() {
         return precio;
     }
-
     public void setPrecioBono(long p) {
         this.precio = p;
     }

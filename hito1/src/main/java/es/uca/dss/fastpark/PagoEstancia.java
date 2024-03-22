@@ -5,18 +5,12 @@ import com.google.zxing.NotFoundException;
 import java.io.IOException;
 
 public class PagoEstancia {
-    private final QRServicio cod_;
     private final Tarificacion tarifa;
-    private final VehiculoRepositorio coches;
 
-    public PagoEstancia (Tarificacion t, VehiculoRepositorio c) {
+    public PagoEstancia (Tarificacion t) {
         this.tarifa = t;
-        this.coches = c;
-        this.cod_ = new QRServicio();
     }
-    public void pagar() throws IOException, NotFoundException {
-        String matricula = cod_.leerQR(); // Leemos el codigo QR
-        Vehiculo vehiculo = coches.get(matricula); // Dada la matrícula cojo el vehiculo
+    public void pagar(Vehiculo vehiculo) throws IOException, NotFoundException {
         long precio = obtenerPrecio(vehiculo.calcularTiempoEstacionado());
         System.out.println("El vehículo con matrícula " + vehiculo.matricula() + " debe pagar " + precio + " euros.");
         // Pagar dinero

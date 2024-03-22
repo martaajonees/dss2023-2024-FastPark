@@ -47,7 +47,7 @@ class VehiculoTest {
     void tieneBono() {
         assertFalse(vehiculo.tieneBono());
         Bono bono = new BonoAnual();
-        vehiculo.setBono(bono);
+        vehiculo.addBono(bono);
         assertTrue(vehiculo.tieneBono());
     }
 

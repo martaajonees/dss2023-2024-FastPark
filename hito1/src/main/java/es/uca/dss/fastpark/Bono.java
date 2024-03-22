@@ -1,7 +1,7 @@
 package es.uca.dss.fastpark;
 import java.time.LocalDateTime;
 
-abstract class Bono {
+public abstract class Bono {
     private final LocalDateTime inicio, caducidad;
     protected Bono() {
         this.inicio = LocalDateTime.now();

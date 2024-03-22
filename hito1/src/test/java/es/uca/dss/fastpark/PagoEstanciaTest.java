@@ -19,7 +19,7 @@ class PagoEstanciaTest {
         this.tarifas = new Tarificacion(4);
         this.coches = new VehiculosHash();
         this.qr = new QRServicio();
-        this.pago = new PagoEstancia(tarifas, coches);
+        this.pago = new PagoEstancia(tarifas);
         // Creamos un vehiculo y lo añadimos
         String mat = "1234ABC";
         Vehiculo v = new Vehiculo(mat);
@@ -31,8 +31,9 @@ class PagoEstanciaTest {
 
     @Test
     void pagar() throws IOException, NotFoundException{
-        pago.pagar();
+        String matricula = qr.leerQR(); // Leemos el codigo QR
+        Vehiculo vehiculo = coches.get(matricula); // Dada la matrícula cojo el vehiculo
+        pago.pagar(vehiculo);
     }
-
 
 }

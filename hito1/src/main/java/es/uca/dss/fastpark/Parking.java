@@ -6,15 +6,19 @@ import java.lang.String;
 import java.util.concurrent.TimeUnit;
 
 public class Parking {
+    // info de la clase
     private final String nombre;
     private final int dirPostal, nPlazas;
     private int plazasOcupadas;
+    // Objetos que lo componen
     private final VehiculoRepositorio coches;
     private final HistorialRepositorio historial;
     private final QRServicio cod;
     private final Barrera bar;
     private Tarificacion tarifas;
     private PagoEstancia pagoEstancia;
+    private final PagoBono pagoBono;
+
     //Constructor
     public Parking (String nom, int dir, int plazas){
         this.nombre = nom;
@@ -25,13 +29,14 @@ public class Parking {
         this.cod = new QRServicio();
         this.bar = new Barrera();
         this.historial = new VehiculosHistorial();
-        this.pagoEstancia = new PagoEstancia(tarifas, coches);
+        this.pagoEstancia = new PagoEstancia(tarifas);
+        this.pagoBono = new PagoBono();
     }
 
     // Método set tarificación
     public void setTarificacion(Tarificacion t){
         this.tarifas = t;
-        this.pagoEstancia = new PagoEstancia(tarifas, coches);
+        this.pagoEstancia = new PagoEstancia(tarifas);
     }
     // Métodos
     public void entrada(String mat){ // Se lee su matrícula automáticamente
@@ -44,9 +49,9 @@ public class Parking {
             {
                 System.err.println(e.getMessage());
             }
-            coches.guardar(mat, veh); // Añadimos al map
             plazasOcupadas ++; // Se ha ocupado una plaza más
             veh.inicio(); // Empezamos a contar tiempo de estancia
+            coches.guardar(mat, veh); // Añadimos al map
             try {
                 TimeUnit.SECONDS.sleep(15);
             } catch (InterruptedException e){
@@ -79,8 +84,18 @@ public class Parking {
     {
         return plazasOcupadas;
     }
+
+    // Pagos Estándar
     public void pagarEstandar() throws IOException, NotFoundException{
-        pagoEstancia.pagar();
+        String matricula = cod.leerQR(); // Leemos el codigo QR
+        Vehiculo vehiculo = coches.get(matricula); // Dada la matrícula cojo el vehiculo
+        pagoEstancia.pagar(vehiculo);
+    }
+    //Pagar un Bono (de un tipo determinado)
+    public void pagarBono(Bono b) throws NotFoundException, IOException{
+        String matricula = cod.leerQR(); // Leemos el codigo QR
+        Vehiculo v = coches.get(matricula); // Dada la matrícula cojo el vehiculo
+        pagoBono.obtenerBono(b, v);
     }
 
     @Override
